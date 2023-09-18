@@ -1,0 +1,256 @@
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-blue {
+  background-color: #4763e4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-blue:hover {
+  cursor: pointer;
+  background-color: #6880ee;
+}
+
+
+.btn-red {
+    background-color: #F55050;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .btn-red:hover {
+    cursor: pointer;
+    background-color: #f16b6b;
+  }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f2f2f2;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content{
+    border: 1px solid #888;
+}
+
+.modal-header{
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #888;
+}
+
+.form-buttons{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.form-buttons button{
+    margin-inline: 10px;
+}
+
+.form-input{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-block: 20px;
+    align-items: center;
+}
+
+.input {
+    padding: 4px 6px;
+    font-size: 16px;
+    border: 1px solid black;
+  }
+  
+
+  .input:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+  }
+  
+  .input:hover {
+    border-color: #b5bbc3;
+  }
+
+
+.form-error-message{
+  display: none;
+}
+.form-error-message-active{
+  background-color: #ebe8be;
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  color: #fc2b2b;
+  margin: 0;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#one-camera-panel{
+  height: 40vh;
+  width: 50%;
+  background-color: #575656;
+  margin-inline: 40px;
+
+}
+
+#two-camera-panel{
+  height: 70vh;
+  width: 70%;
+  background-color: #575656;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.camera-image-container{
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgb(99, 84, 84);
+}
+
+#multi-camera-panel{
+  height: 70vh;
+  width: 80%;
+  background-color: #575656;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+
+#multi-camera-panel .camera-image-container{
+  margin: 0;
+  padding: 0;
+  height: 49%;
+  width: 49%;
+  border: 1px solid rgb(65, 51, 51);
+}
+
+
+.surveillance-panel{
+  display: flex;
+}
+
+.right-panel{
+  width: 25%;
+  margin-inline: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cameras-info{
+  padding: 1px 10px 10px 10px;
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 20px ;
+}
+
+
+.cameras-list{
+  list-style: none;
+  padding: 0;
+}
+
+.camera-item{
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+
+
+.remove-camera-btn { 
+  display: block;
+  width: 130px;
+  height: 30px;
+  color: white;
+  background-color: #F55050;
+  border: none;
+  border-radius: 20px;
+}
+
+.remove-camera-btn:hover{
+  cursor: pointer;
+  background-color: #f36f6f;
+}
+
+
+
+#activities-history{
+  list-style: none;
+
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 20px ;
+
+  padding: 10px;
+
+
+}
+
+
+#activities-history li{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+  border-bottom: 1px dashed rgb(151, 149, 149);
+}
+
+#activities-history li span {
+  margin-left: 3px;
+  font-size: 14px;
+
+}

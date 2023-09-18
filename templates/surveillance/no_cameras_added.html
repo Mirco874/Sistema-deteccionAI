@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Página con Sidebar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+  
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector(".sidebar");
+      sidebar.classList.toggle("sidebar-hidden");
+      const mainContent = document.querySelector(".main-content");
+      mainContent.classList.toggle("main-content-full")
+    }
+  </script>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="logo" height="100px" width="110px">
+    <button class="sidebar-btn" id="open-menu" onclick="toggleSidebar()">
+        <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="none" stroke="#000" stroke-width="3" />
+            <path d="M10 10H30M10 20H30M10 30H30" stroke="#000" stroke-width="4" />
+          </svg>       
+    </button>
+
+    <a href="/" class="sidebar-redirect-btn"> 
+        Home
+    </a>
+
+    <a href="/surveillance" class="sidebar-redirect-btn">
+        Vigilancia
+      </a>
+
+    <a href="/reports" class="sidebar-redirect-btn">
+      Reportes
+    </a>
+  </aside>
+
+  <main class="main-content">
+        <section id="info"></section>
+        <section class="content">
+            <h1>Surveillance Page</h1>
+            <p>{{connected_devices  | default('Valor no disponible')  }}</p>
+            <section>
+
+
+                <div class="centered-container">
+                    {% if selected_cameras|length == 0 %}
+                    <img 
+                        src="{{ url_for("static", filename="images/no_camera_selected.png") }}" 
+                        alt="no camera selected"
+                        height="180px"
+                        width="170px"
+                    >
+                    <p>No se selecciono una camara.</p>
+                    <button class="btn-blue" onclick="modal.openModal()" > Agregar camara. </button>
+                    
+                    {% elif selected_cameras|length == 1 %}
+                        <div id="one-camera-panel">
+                            <div class="camera-image-container">        
+                                 
+                            </div>
+                        </div>
+                    {% elif selected_cameras|length == 2 %}
+                        <div id="two-camera-panel">
+                            <div class="camera-image-container">
+
+                            </div>
+                            <div class="camera-image-container">
+
+                            </div>  
+                        </div>
+        
+                </div>
+
+                <div id="select-camera-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="modal.closeModal()">&times;</span>
+                        <h3 class="modal-header">Selecciona una cámara</h3>
+
+                        <form 
+                            class="select-camera-form" 
+                            novalidate 
+                            >
+
+                            <div class="form-error-message" id="camera-form-error-container">
+                                <p id="camera-form-error"> sadasd</p>
+                            </div>
+                          
+                            <div class="form-input">
+                                <label>Nombre de la cámara <span class="text-red">*</span>: </label>
+                                <input type="text" placeholder="Nombre de la cámara" class="input" id="camera-name" name="camera_name"> 
+                            </div>
+                            
+                            <div class="form-input">
+                                <label> modelo <span class="text-red">*</span>: </label>
+                                <select name="camera-select" class="input" id="camera-id">
+                                        <option disabled selected> asd</option>
+                                        {% for camera in connected_cameras %}
+                                        <option value={{camera.id}}>{{ camera.name }}</option>
+                                        {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button class="btn-blue" type="button" onclick="registerCamera(()=>modal.closeModal());">Aceptar</button>
+                                <button class="btn-red" type="button" onclick="modal.closeModal()" > Cancelar</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+
+            </section>
+
+        </section>
+  </main>
+
+    <script src="{{ url_for('static', filename='scripts/date.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/Modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/selectCamera.js') }}"></script>
+
+    <script>
+        modal = new Modal("select-camera-modal");
+
+        window.onclick = function (event) {
+            if (event.target.className == "modal") {
+                modal.closeModal();
+            }
+        };
+    </script>
+    <script>
+        loadCurrentConnectedCameras();
+    </script>
+
+</body>
+</html>
